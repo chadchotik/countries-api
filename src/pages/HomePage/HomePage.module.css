@@ -1,0 +1,15 @@
+.container {
+    min-height: 100vh;
+    padding: 35px 35px;
+
+}
+
+.toolBar {
+    display: flex;
+}
+
+.homePageBody {
+    padding: 35px 0px;
+    display: flex;
+
+}

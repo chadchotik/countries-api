@@ -1,0 +1,42 @@
+.container {
+    min-height: 100vh;
+    padding: 35px 35px;
+
+}
+
+.toolBar {
+    display: flex;
+}
+
+.buttonText {
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.detailsBody {
+    padding: 35px 0px;
+    display: flex;
+}
+
+.detailsTextBody {
+    padding: 25px 75px;
+    width: 100%;
+}
+
+.bordersContainer {
+    display: flex;
+    padding-top: 20px;
+}
+
+.bordersEntry {
+    display: flex;
+    font-size: 12px;
+    margin-bottom: 5px;
+    align-items: center
+}
+
+.bordersText {
+    font-weight: 600;
+    padding-right: 5px;
+    width: 100px;
+}
