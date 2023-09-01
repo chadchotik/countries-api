@@ -23,8 +23,8 @@ const CountryDetail: React.FC<CountryDetailMobileInterface> = ({ lightModeEnable
     const countryDetailsByCode = useGetCountryDetailsByCode(id);
 
     useEffect(() => {
-        document.title = `WKS - ${id}`;
-    }, []);
+        document.title = `Countries - ${displayCountry?.name}`;
+    }, [displayCountry]);
 
     useEffect(() => {
         if (countryDetailsByCode?.data) setDisplayCountry(countryDetailsByCode.data)

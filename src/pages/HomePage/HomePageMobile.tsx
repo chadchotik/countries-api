@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./HomePage.module.css";
 import SearchBar from "../../components/SearchBar.tsx";
-import { COLORS } from '../../constants.tsx'
+import { COLORS, REGION_OPTIONS } from '../../constants.tsx'
 import DropdownMenu from "../../components/DropdownMenu.tsx";
 import { useGetAllCountries } from "../../apis/Country/Country.ts";
 import Grid from '@mui/material/Grid';
@@ -19,17 +19,10 @@ const HomePageMobile: React.FC<HomePageMobileInterface> = ({ lightModeEnabled })
     const [regionFilter, setRegionFilter] = useState('');
     const [displayCountries, setDisplayCountries] = useState([]);
 
-    const options = [{ value: 'Africa', label: 'Africa' },
-    { value: 'Americas', label: 'America' },
-    { value: 'Asia', label: 'Asia' },
-    { value: 'Europe', label: 'Europe' },
-    { value: 'Oceania', label: 'Oceania' }]
-
-
     const countries = useGetAllCountries();
 
     useEffect(() => {
-        document.title = "WKS - Countries";
+        document.title = "Countries API";
     }, []);
 
     useEffect(() => {
@@ -56,7 +49,7 @@ const HomePageMobile: React.FC<HomePageMobileInterface> = ({ lightModeEnabled })
                             <SearchBar value={search} setValue={setSearch} lightModeEnabled={lightModeEnabled} placeholder="Search for a country..." />
                         </div>
                         <div style={{ marginLeft: 'auto', marginTop: '20px' }}>
-                            <DropdownMenu value={regionFilter} setValue={setRegionFilter} lightModeEnabled={lightModeEnabled} initialText={'Filter by Region'} options={options} />
+                            <DropdownMenu value={regionFilter} setValue={setRegionFilter} lightModeEnabled={lightModeEnabled} initialText={'Filter by Region'} options={REGION_OPTIONS} />
                         </div>
                     </div>
 

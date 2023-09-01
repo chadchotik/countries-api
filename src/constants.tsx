@@ -7,3 +7,9 @@ export const COLORS = {
     DARK_MODE_SHADOW: '0px 2px 4px 3px hsl(207, 19%, 15%)',
     DARK_MODE_BODY_BACKGROUND: 'hsl(207, 26%, 17%)'
 }
+
+export const REGION_OPTIONS = [{ value: 'Africa', label: 'Africa' },
+{ value: 'Americas', label: 'America' },
+{ value: 'Asia', label: 'Asia' },
+{ value: 'Europe', label: 'Europe' },
+{ value: 'Oceania', label: 'Oceania' }]

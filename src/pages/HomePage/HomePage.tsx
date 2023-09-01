@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./HomePage.module.css";
 import SearchBar from "../../components/SearchBar.tsx";
-import { COLORS } from '../../constants.tsx'
+import { COLORS, REGION_OPTIONS } from '../../constants.tsx'
 import DropdownMenu from "../../components/DropdownMenu.tsx";
 import { useGetAllCountries } from "../../apis/Country/Country.ts";
 import Grid from '@mui/material/Grid';
@@ -19,12 +19,6 @@ const HomePage: React.FC<HomePageInterface> = ({ lightModeEnabled }) => {
     const [search, setSearch] = useState('')
     const [regionFilter, setRegionFilter] = useState('');
     const [displayCountries, setDisplayCountries] = useState([]);
-
-    const options = [{ value: 'Africa', label: 'Africa' },
-    { value: 'Americas', label: 'America' },
-    { value: 'Asia', label: 'Asia' },
-    { value: 'Europe', label: 'Europe' },
-    { value: 'Oceania', label: 'Oceania' }]
 
 
     const countries = useGetAllCountries();
@@ -55,7 +49,7 @@ const HomePage: React.FC<HomePageInterface> = ({ lightModeEnabled }) => {
                     <div className={styles.toolBar}>
                         <SearchBar value={search} setValue={setSearch} lightModeEnabled={lightModeEnabled} placeholder="Search for a country..." />
                         <div style={{ marginLeft: 'auto' }}>
-                            <DropdownMenu value={regionFilter} setValue={setRegionFilter} lightModeEnabled={lightModeEnabled} initialText={'Filter by Region'} options={options} />
+                            <DropdownMenu value={regionFilter} setValue={setRegionFilter} lightModeEnabled={lightModeEnabled} initialText={'Filter by Region'} options={REGION_OPTIONS} />
                         </div>
                     </div>
 
