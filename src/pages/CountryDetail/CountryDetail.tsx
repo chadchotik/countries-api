@@ -7,19 +7,16 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useGetCountryDetails, useGetCountryDetailsByCode } from "../../apis/Country/Country.ts";
 import Grid from '@mui/material/Grid';
 import { COLORS } from '../../constants.tsx';
-
-interface CountryDetailInterface {
-    lightModeEnabled: boolean;
-}
+import { LightModeContext } from "../../context/LightModeContext";
 
 
-
-const CountryDetail: React.FC<CountryDetailInterface> = ({ lightModeEnabled }) => {
+const CountryDetail = () => {
     let { id } = useParams();
     const navigate = useNavigate();
     const [displayCountry, setDisplayCountry] = useState(null);
     const countryDetails = useGetCountryDetails(id);
     const countryDetailsByCode = useGetCountryDetailsByCode(id);
+    const { lightModeEnabled } = React.useContext(LightModeContext);
 
     useEffect(() => {
         document.title = `Countries - ${displayCountry?.name}`;

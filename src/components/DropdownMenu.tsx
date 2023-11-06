@@ -2,18 +2,19 @@ import React from "react";
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { COLORS } from '../constants.tsx'
-
+import { LightModeContext } from "../context/LightModeContext.js";
 
 interface DropdownMenuInterface {
     value: string;
     setValue: React.Dispatch<React.SetStateAction<string>>;
-    lightModeEnabled: boolean;
     initialText?: string;
     options?: Array<{ value: any, label: string; }>;
 }
 
 
-const DropdownMenu: React.FC<DropdownMenuInterface> = ({ value, setValue, lightModeEnabled, initialText, options, ...props }) => {
+const DropdownMenu: React.FC<DropdownMenuInterface> = ({ value, setValue, initialText, options, ...props }) => {
+
+    const { lightModeEnabled } = React.useContext(LightModeContext);
 
     const handleChange = (event: SelectChangeEvent<string>) => {
         setValue(event.target.value)

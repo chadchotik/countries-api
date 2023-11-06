@@ -5,6 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
 import { COLORS } from '../constants.tsx';
 import { Link } from 'react-router-dom';
+import { LightModeContext } from "../context/LightModeContext.js";
 
 interface DisplayCardInterface {
     img?: string;
@@ -12,12 +13,14 @@ interface DisplayCardInterface {
     population?: number;
     region?: string;
     capital?: Array<string> | null;
-    lightModeEnabled: boolean;
 }
 
 
 
-const DisplayCard: React.FC<DisplayCardInterface> = ({ img, name, population, region, capital, lightModeEnabled, ...props }) => {
+const DisplayCard: React.FC<DisplayCardInterface> = ({ img, name, population, region, capital, ...props }) => {
+
+    const { lightModeEnabled } = React.useContext(LightModeContext);
+
     return (
         <Card sx={{ width: 200, boxShadow: lightModeEnabled ? COLORS.LIGHT_MODE_SHADOW : COLORS.DARK_MODE_SHADOW }}>
             <CardActionArea component={Link} to={`/${name}`}>

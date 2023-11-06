@@ -8,6 +8,7 @@ import CountryDetail from './pages/CountryDetail/CountryDetail.tsx';
 import { useMediaQuery } from "@mui/material";
 import HomePageMobile from './pages/HomePage/HomePageMobile.tsx';
 import CountryDetailMobile from './pages/CountryDetail/CountryDetailMobile.tsx';
+import { LightModeProvider } from './context/LightModeContext';
 
 
 
@@ -24,13 +25,15 @@ const App = () => {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <div className="App">
-          <Header lightModeEnabled={lightModeEnabled} setLightModeEnabled={setLightModeEnabled} />
-          <Routes>
-            <Route exact path='/' element={isDesktop ? <HomePage lightModeEnabled={lightModeEnabled} /> : <HomePageMobile lightModeEnabled={lightModeEnabled} />} />
-            <Route path='/:id' element={isDesktop ? <CountryDetail lightModeEnabled={lightModeEnabled} /> : <CountryDetailMobile lightModeEnabled={lightModeEnabled} />} />
-          </Routes>
-        </div>
+        <LightModeProvider>
+          <div className="App">
+            <Header />
+            <Routes>
+              <Route exact path='/' element={isDesktop ? <HomePage /> : <HomePageMobile />} />
+              <Route path='/:id' element={isDesktop ? <CountryDetail /> : <CountryDetailMobile />} />
+            </Routes>
+          </div>
+        </LightModeProvider>
       </QueryClientProvider>
     </BrowserRouter>
   );

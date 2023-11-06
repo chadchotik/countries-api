@@ -4,13 +4,13 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { TextField } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import { COLORS } from "../constants.tsx";
+import { LightModeContext } from "../context/LightModeContext.js";
 
 
 
 interface SearchBarInterface {
     value: string;
     setValue: React.Dispatch<React.SetStateAction<string>>;
-    lightModeEnabled: boolean;
     placeholder?: string;
 }
 
@@ -20,7 +20,9 @@ const StyledSearhBar = styled(TextField)({
     },
 });
 
-const SearchBar: React.FC<SearchBarInterface> = ({ value, setValue, lightModeEnabled, ...props }) => {
+const SearchBar: React.FC<SearchBarInterface> = ({ value, setValue, ...props }) => {
+
+    const { lightModeEnabled } = React.useContext(LightModeContext);
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue(event.target.value);

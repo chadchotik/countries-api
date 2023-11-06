@@ -6,19 +6,15 @@ import DropdownMenu from "../../components/DropdownMenu.tsx";
 import { useGetAllCountries } from "../../apis/Country/Country.ts";
 import Grid from '@mui/material/Grid';
 import DisplayCard from "../../components/DisplayCard.tsx";
+import { LightModeContext } from '../../context/LightModeContext';
 
 
-
-
-interface HomePageInterface {
-    lightModeEnabled: boolean;
-}
-
-const HomePage: React.FC<HomePageInterface> = ({ lightModeEnabled }) => {
+const HomePage = () => {
 
     const [search, setSearch] = useState('')
     const [regionFilter, setRegionFilter] = useState('');
     const [displayCountries, setDisplayCountries] = useState([]);
+    const { lightModeEnabled } = React.useContext(LightModeContext);
 
 
     const countries = useGetAllCountries();
@@ -47,9 +43,9 @@ const HomePage: React.FC<HomePageInterface> = ({ lightModeEnabled }) => {
 
                 <div className={styles.container} style={lightModeEnabled ? { backgroundColor: COLORS.LIGHT_MODE_BACKGROUND } : { backgroundColor: COLORS.DARK_MODE_BODY_BACKGROUND }}>
                     <div className={styles.toolBar}>
-                        <SearchBar value={search} setValue={setSearch} lightModeEnabled={lightModeEnabled} placeholder="Search for a country..." />
+                        <SearchBar value={search} setValue={setSearch} placeholder="Search for a country..." />
                         <div style={{ marginLeft: 'auto' }}>
-                            <DropdownMenu value={regionFilter} setValue={setRegionFilter} lightModeEnabled={lightModeEnabled} initialText={'Filter by Region'} options={REGION_OPTIONS} />
+                            <DropdownMenu value={regionFilter} setValue={setRegionFilter} initialText={'Filter by Region'} options={REGION_OPTIONS} />
                         </div>
                     </div>
 
@@ -64,7 +60,6 @@ const HomePage: React.FC<HomePageInterface> = ({ lightModeEnabled }) => {
                                         population={country?.population}
                                         region={country?.region}
                                         capital={country?.capital}
-                                        lightModeEnabled={lightModeEnabled}
                                     />
                                 </Grid>
 

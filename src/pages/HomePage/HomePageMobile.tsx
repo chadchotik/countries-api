@@ -6,18 +6,17 @@ import DropdownMenu from "../../components/DropdownMenu.tsx";
 import { useGetAllCountries } from "../../apis/Country/Country.ts";
 import Grid from '@mui/material/Grid';
 import DisplayCard from "../../components/DisplayCard.tsx";
+import { LightModeContext } from "../../context/LightModeContext";
 
 
-interface HomePageMobileInterface {
-    lightModeEnabled: boolean;
-}
 
 
-const HomePageMobile: React.FC<HomePageMobileInterface> = ({ lightModeEnabled }) => {
+const HomePageMobile: React.FC<HomePageMobileInterface> = () => {
 
     const [search, setSearch] = useState('')
     const [regionFilter, setRegionFilter] = useState('');
     const [displayCountries, setDisplayCountries] = useState([]);
+    const { lightModeEnabled } = React.useContext(LightModeContext);
 
     const countries = useGetAllCountries();
 
@@ -46,10 +45,10 @@ const HomePageMobile: React.FC<HomePageMobileInterface> = ({ lightModeEnabled })
                 <div className={styles.container} style={lightModeEnabled ? { backgroundColor: COLORS.LIGHT_MODE_BACKGROUND } : { backgroundColor: COLORS.DARK_MODE_BODY_BACKGROUND }}>
                     <div>
                         <div style={{ display: 'flex' }}>
-                            <SearchBar value={search} setValue={setSearch} lightModeEnabled={lightModeEnabled} placeholder="Search for a country..." />
+                            <SearchBar value={search} setValue={setSearch} placeholder="Search for a country..." />
                         </div>
                         <div style={{ marginLeft: 'auto', marginTop: '20px' }}>
-                            <DropdownMenu value={regionFilter} setValue={setRegionFilter} lightModeEnabled={lightModeEnabled} initialText={'Filter by Region'} options={REGION_OPTIONS} />
+                            <DropdownMenu value={regionFilter} setValue={setRegionFilter} initialText={'Filter by Region'} options={REGION_OPTIONS} />
                         </div>
                     </div>
 
@@ -64,7 +63,6 @@ const HomePageMobile: React.FC<HomePageMobileInterface> = ({ lightModeEnabled })
                                         population={country?.population}
                                         region={country?.region}
                                         capital={country?.capital}
-                                        lightModeEnabled={lightModeEnabled}
                                     />
                                 </Grid>
 
